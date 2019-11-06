@@ -3,5 +3,5 @@
 ### NOM : BICHON NOUGAILLAC
 ### Prénom : Corentin
 ### Groupe de TP : 
-- [ ] TD1
-- [X] TD2
+- [X] TD1
+- [ ] TD2
