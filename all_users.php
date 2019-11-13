@@ -25,12 +25,26 @@
 		}
 	?>
 
+	<h1> All users </h1>
+	<table> 
+	    <tr> 
+			<th> Id </th>
+			<th> Username </th>
+			<th> Email </th>
+			<th> Status </th>
+		</tr>
 	<?php
-		$stmt = $pdo->query('SELECT username FROM users');
+		$stmt = $pdo->query('SELECT * FROM users JOIN status ON users.status_id = status.id ORDER  BY username');
 		while ($row = $stmt->fetch())
 		{
-			echo $row['username'] . "\n";
+			echo "<tr>
+			        <td> $row[id] </td> 
+					<td> $row[username] </td>
+					<td> $row[email] </td>
+					<td> $row[name] </td>
+				 </tr>" ;
 		}
 	?>
+	</table>
 	</body>
 </html> 
