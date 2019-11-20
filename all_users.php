@@ -25,10 +25,14 @@
 		}
 	?>
 
-	<form action="all_users.php" method="post">
+	
+		
+	<h1> All users </h1> </br> 
+	
+	<form action="all_users.php" method="get">
 	
 		<label for="lettre"> start with letter :  </label>
-        <input type="text" name="lettre" id="lettre" />
+        <input type="text" name="lettre" id="lettre" value="<?php $_GET['lettre'] ?>"/>
 		
 		<label for="and_status_is"> and status is  </label>
 		<select name="and_status_is">
@@ -41,27 +45,26 @@
 	</form>
 
 		
-	
-	
-	
-</form>
-	<h1> All users </h1>
 	<table> 
 	    <tr> 
 			<th> Id </th>
 			<th> Username </th>
 			<th> Email </th>
 			<th> Status </th>
-		</tr>
+		</tr> </br> 
 	<?php
-		$maLettre = $_POST['lettre'] ;
-		$monStatus = $_POST['and_status_is'] ;
+		$maLettre = $_GET['lettre']."%" ;
+		$monStatus = $_GET['and_status_is'] ;
 		
-		$stmt = $pdo->query("SELECT users.id as users_id, email, username, name 
+		$stmt = $pdo->prepare("SELECT users.id as users_id, email, username, name 
 							 FROM users 
 							 JOIN status ON users.status_id = status.id 
-							 WHERE username LIKE '$maLettre%'	AND users.status_id = '$monStatus'						 
+							 WHERE username LIKE ?	AND users.status_id = ?						 
 							 ORDER BY username");
+							 
+		$stmt->execute([$maLettre, $monStatus ]);
+	
+		
 		while ($row = $stmt->fetch())
 		{
 			echo "<tr>
