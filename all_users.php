@@ -25,6 +25,26 @@
 		}
 	?>
 
+	<form action="all_users.php" method="post">
+	
+		<label for="lettre"> start with letter :  </label>
+        <input type="text" name="lettre" id="lettre" />
+		
+		<label for="and_status_is"> and status is  </label>
+		<select name="and_status_is">
+			<option value="2">Active account</option>
+			<option value="1">Waiting for account validation</option>
+			<option value="3">Waiting for account delotion</option>
+		</select>
+	
+		<input type="submit" value="ok"> </br>
+	</form>
+
+		
+	
+	
+	
+</form>
 	<h1> All users </h1>
 	<table> 
 	    <tr> 
@@ -34,10 +54,13 @@
 			<th> Status </th>
 		</tr>
 	<?php
+		$maLettre = $_POST['lettre'] ;
+		$monStatus = $_POST['and_status_is'] ;
+		
 		$stmt = $pdo->query("SELECT users.id as users_id, email, username, name 
 							 FROM users 
 							 JOIN status ON users.status_id = status.id 
-							 WHERE username LIKE 'e%'	AND users.status_id = '2'						 
+							 WHERE username LIKE '$maLettre%'	AND users.status_id = '$monStatus'						 
 							 ORDER BY username");
 		while ($row = $stmt->fetch())
 		{
