@@ -32,13 +32,13 @@
 	<form action="all_users.php" method="get">
 	
 		<label for="lettre"> start with letter :  </label>
-        <input type="text" name="lettre" id="lettre" value="<?php $_GET['lettre'] ?>"/>
+        <input type="text" name="lettre" id="lettre"/>
 		
 		<label for="and_status_is"> and status is  </label>
 		<select name="and_status_is">
 			<option value="2">Active account</option>
 			<option value="1">Waiting for account validation</option>
-			<option value="3">Waiting for account delotion</option>
+			<option value="3">Waiting for account deletion</option>
 		</select>
 	
 		<input type="submit" value="ok"> </br>
